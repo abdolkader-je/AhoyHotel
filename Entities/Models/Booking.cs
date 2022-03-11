@@ -14,7 +14,6 @@ public class Booking : BaseEntity
     [ForeignKey(nameof(ApplicationUser))]
 
     public string UserId { get; set; }
-    public string UserName { get; set; }
     [ForeignKey(nameof(Room))]
 
     public int RoomId { get; set; }
