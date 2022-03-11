@@ -7,7 +7,9 @@ namespace Entities.Models
         public ApplicationUser()
         {
             IsDeleted = false;
+            CreatedDate = DateTime.Now;
         }
+        public DateTime CreatedDate { get; set; }
         public bool  IsDeleted { get; set; }
     }
 }

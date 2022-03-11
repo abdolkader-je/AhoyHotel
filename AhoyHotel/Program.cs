@@ -6,13 +6,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Contracts;
+using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 // For Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 .AddEntityFrameworkStores<DatabaseContext>()
@@ -25,6 +29,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+   
 
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
@@ -69,6 +74,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer("server=.;Database=AhoyDB;Trusted_Connection=True;MultipleActiveResultSets=true"));
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
