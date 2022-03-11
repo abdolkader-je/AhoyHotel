@@ -20,6 +20,6 @@ public class Booking : BaseEntity
     public int RoomId { get; set; }
     public RoomType RoomType { get; set; }
     public Room Room { get; set; }
-    //public virtual ApplicationUser ApplicationUser { get; set; }
+    public virtual ApplicationUser ApplicationUser { get; set; }
 
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Entities
 {
-    public class DatabaseContext : DbContext, IDatabaseContext
+    public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
@@ -29,9 +29,7 @@ namespace Entities
         public DbSet<HotelFacility> HotelFacilities { get; set; }
         public DbSet<HotelImage> HotelImages { get; set; }
         public DbSet<Review> Reviews { get; set; }
-
         public DbSet<Room> Rooms { get; set; }
-
         private void UpdateLastModified()
         {
             var LastModified = "LastModified";

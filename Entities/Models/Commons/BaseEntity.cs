@@ -11,7 +11,7 @@ namespace  Domain.Entities
             CreatedDate = DateTime.Now;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public bool IsDeleted { get; set; }
         [Required(ErrorMessage = "Date created is required")]
 
