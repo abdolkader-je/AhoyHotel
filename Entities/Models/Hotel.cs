@@ -1,8 +1,5 @@
-﻿
-
-using Entities.Models;
+﻿using Entities.Models;
 using System.ComponentModel.DataAnnotations;
-
 namespace Domain.Entities;
 public class Hotel : BaseEntity
 {
