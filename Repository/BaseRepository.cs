@@ -28,12 +28,7 @@ namespace Repository
         public async Task Delete(int id)
         {
             var entity = await Dbset.FindAsync(id);
-            Dbset.Remove(entity);
-        }
-
-        public void DeleteRange(IEnumerable<T> entities)
-        {
-            Dbset.RemoveRange(entities);
+            Dbset.Update(entity);
         }
 
         public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
@@ -85,14 +80,9 @@ namespace Repository
                 .ToPagedListAsync(requestParams.PageNumber, requestParams.PageSize);
         }
 
-        public async Task Insert(T entity)
+        public async Task AddAsync(T entity)
         {
             await Dbset.AddAsync(entity);
-        }
-
-        public async Task InsertRange(IEnumerable<T> entities)
-        {
-            await Dbset.AddRangeAsync(entities);
         }
 
         public void Update(T entity)

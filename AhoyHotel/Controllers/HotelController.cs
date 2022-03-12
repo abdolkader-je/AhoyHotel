@@ -22,46 +22,47 @@ namespace AhoyHotelApi.Controllers
         }
 
         [HttpGet]
+        [Route(ApiRoute.HotelRoutes.GetHotelDetailsById)]
+        public async Task<IActionResult> GetHotelDetailsById(int hotelId)
+        {
+            var hotel = await _unitOfWork.Hotels.Get(q => q.Id == hotelId);
+            var result = _mapper.Map<HotelDetailsDto>(hotel);
+            HotelDetailsResponseDto hotelResponseDetailsDto = new()
+            {
+                Data = result,
+                ResponseMessage = "Requeste Completed Successfully",
+                StatusCode = 200
+            };
+            return Ok(hotelResponseDetailsDto);
+        }
+
+        [HttpGet]
         [Route(ApiRoute.HotelRoutes.GetAllHotels)]
-        public async Task<IActionResult> GetHotels([FromQuery] RequestParams requestParams)
+        public async Task<IActionResult> GetAllHotels([FromQuery] RequestParams requestParams)
         {
             var hotels = await _unitOfWork.Hotels.GetPagedList(requestParams);
             var results = _mapper.Map<IList<HotelDto>>(hotels);
             HotelListResponseDto hotelListResponseDto = new()
             {
                 Data = results,
-                ResponseMessage = "Requested Successfully",
+                ResponseMessage = "Requeste Completed Successfully",
                 StatusCode = 200
             };
 
             return Ok(hotelListResponseDto);
         }
 
-        [HttpGet]
-        [Route(ApiRoute.HotelRoutes.GetHotelDetails)]
-        public async Task<IActionResult> GetHotelDetails(string hotelName)
-        {
-            var hotel = await _unitOfWork.Hotels.Get(q => q.Name == hotelName);
-            var result = _mapper.Map<HotelDetailsDto>(hotel);
-            HotelDetailsResponseDto hotelResponseDetailsDto = new()
-            {
-                Data = result,
-                ResponseMessage= "Requested Successfully",
-                StatusCode=200
-            };
-            return Ok(hotelResponseDetailsDto);
-        }
 
         [HttpGet]
-        [Route(ApiRoute.HotelRoutes.SearchHotels)]
-        public async Task<IActionResult> SearchHotels(string searchTerm)
+        [Route(ApiRoute.HotelRoutes.SearchInHotels)]
+        public async Task<IActionResult> SearchInHotels(string searchTerm)
         {
             var hotels = await _unitOfWork.Hotels.GetAll(q => q.Name.Contains(searchTerm));
             var results = _mapper.Map<IList<HotelDto>>(hotels);
             HotelListResponseDto hotelListResponseDto = new()
             {
                 Data = results,
-                ResponseMessage = "Requested Successfully",
+                ResponseMessage = "Requeste Completed Successfully",
                 StatusCode = 200
             };
             return Ok(hotelListResponseDto);
