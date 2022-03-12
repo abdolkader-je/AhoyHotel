@@ -18,8 +18,7 @@ namespace AhoyHotelApi.Controllers
         private readonly ClaimsPrincipal _claimsPrincipal;
         public readonly string _userId;
 
-        public BookingController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor,
-            IMapper mapper)
+        public BookingController(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             this.mapper = mapper;
@@ -33,12 +32,22 @@ namespace AhoyHotelApi.Controllers
         [Route(ApiRoute.BookingRoutes.AddBooking)]
         public async Task<IActionResult> CreateBooking([FromBody] AddBookingDto addBookingDto)
         {
-            Booking booking = mapper.Map<AddBookingDto, Booking>(addBookingDto);
-            booking.UserId = _userId;
-            await _unitOfWork.Bookings.AddAsync(booking);
-            await _unitOfWork.Save();
-            BaseResponse response= new() { ResponseMessage = "booking added successfully", StatusCode = 200 };
-            return Ok(response);
+            try
+            {
+                Booking newBooking = mapper.Map<AddBookingDto, Booking>(addBookingDto);
+                newBooking.UserId = _userId;
+                newBooking.CreatedDate = DateTime.Now;
+                await _unitOfWork.Bookings.AddAsync(newBooking);
+                await _unitOfWork.Save();
+                BaseResponse response = new() { ResponseMessage = "Booking added successfully", StatusCode = 200 };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                BaseResponse response = new() { ResponseMessage = ex.Message, StatusCode = 401 };
+                return BadRequest(response);
+            }
+           
         }
 
     }

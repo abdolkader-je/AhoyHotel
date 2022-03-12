@@ -1,25 +1,23 @@
 ﻿using AhoyHotelApi;
-using AhoyHotelApi.Controllers;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using Xunit;
 
 namespace UnitsOfTest.Booking
 {
-    public class BookingTest : IClassFixture<>
+    public class BookingTest 
     {
         private static IMapper _mapper;
         private readonly Mock<IUnitOfWork> MockContext;
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly ClaimsPrincipal _claimsPrincipal;
+        public readonly string _userId;
+
         public BookingTest()
         {
             if (_mapper == null)
@@ -35,11 +33,20 @@ namespace UnitsOfTest.Booking
         }
 
         [Fact]
-        public void CreateBookig()
+        public void CreateABookig()
         {
-            BookingController hotelController = new BookingController(MockContext.Object, _mapper);
-
+           // BookingController hotelController = new BookingController(MockContext.Object, _mapper );
+           // var result = hotelController.CreateBooking(MockAddBookingRequest());
+          //  Assert.IsType<IActionResult<HotelDetailsResponseDto>>(result);
         }
+        private AddBookingDto MockAddBookingRequest() => new()
+        {
+            CheckIn = DateTime.Now,
+            CheckOut = DateTime.Now.AddDays(30),
+            UserId = "",
+            Price = "10000",
+            RoomType = Entities.Enums.RoomEnums.RoomType.Single,
+        };
 
     }
 

@@ -3,10 +3,7 @@
 namespace Domain.Entities;
 public class Room : BaseEntity
 {
-    public Room()
-    {
-        IsBooked = false;
-    }
+    public Room() => IsBooked = false;
     public bool IsBooked { get; set; }
     public int RoomNumber { get; set; }
     public RoomType RoomType { get; set; }

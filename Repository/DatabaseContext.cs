@@ -1,5 +1,4 @@
-﻿using Contracts;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +21,6 @@ namespace Entities
             UpdateLastModified();
             return await base.SaveChangesAsync();
         }
-
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Facility> Facilities { get; set; }

@@ -8,7 +8,7 @@ public class Booking : BaseEntity
     public DateTime CheckIn { get; set; }
     public DateTime CheckOut { get; set; }
     public bool IsConfirmed { get; set; }
-    public string Price { get; set; }
+    public decimal Price { get; set; }
     [ForeignKey(nameof(ApplicationUser))]
     public string UserId { get; set; }
     [ForeignKey(nameof(Room))]

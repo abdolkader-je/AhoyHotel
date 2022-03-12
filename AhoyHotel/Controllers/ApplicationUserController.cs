@@ -22,7 +22,9 @@ namespace AhoyHotelApi.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("register")]
+        [HttpPost]
+        [Route(ApiRoute.ApplicatonUserRoutes.Register)]
+
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             var userExists = await _userManager.FindByNameAsync(registerDto.Username);
@@ -42,7 +44,8 @@ namespace AhoyHotelApi.Controllers
         }
 
 
-        [HttpPost("login")]
+        [HttpPost]
+        [Route(ApiRoute.ApplicatonUserRoutes.Login)]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _userManager.FindByNameAsync(loginDto.Username);
@@ -50,10 +53,10 @@ namespace AhoyHotelApi.Controllers
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
-{
-new Claim(ClaimTypes.Name, user.UserName),
-new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-};
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));

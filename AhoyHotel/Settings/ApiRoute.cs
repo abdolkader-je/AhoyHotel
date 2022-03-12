@@ -2,6 +2,11 @@
 {
     public static class ApiRoute
     {
+        public static class ApplicatonUserRoutes
+        {
+            public const string Register = "register";
+            public const string Login = "login";
+        }
         public static class BookingRoutes
         {
             public const string AddBooking = "add";

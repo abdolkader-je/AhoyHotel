@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations;
 namespace Domain.Entities;
 public class Hotel : BaseEntity
 {
+    public Hotel()
+    {
+        HotelFacilities = new List<HotelFacility>();
+        HotelImages = new List<HotelImage>();
+        Rooms = new List<Room>();
+        Reviews = new List<Review>();
+    }
     public string Name { get; set; }
     public string Email { get; set; }
     public string Contact { get; set; }

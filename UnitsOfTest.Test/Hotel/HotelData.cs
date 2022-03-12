@@ -1,9 +1,4 @@
 ﻿using Entities.DataTransferObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitsOfTest.Hotel
 {
@@ -19,8 +14,10 @@ namespace UnitsOfTest.Hotel
             HotelFacilities=null,
             HotelImages=null,   
             Location =null,
-
-
+            NumberOfRooms=0,
+            RatingScale = null,
+            Reviews=   null,
+            Rooms = null,
         };
     }
 }

@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{87A94AD3-EB25-4A33-9B15-6F818E120FC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{E89621E7-D3C3-4721-9852-CD32F3EE03F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repository\Repositories.csproj", "{E89621E7-D3C3-4721-9852-CD32F3EE03F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsOfTest", "UnitsOfTest.Test\UnitsOfTest.csproj", "{CBEA892F-72DB-4DA6-B996-B055FB78FB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsOfTest", "UnitsOfTest.Test\UnitsOfTest.csproj", "{CBEA892F-72DB-4DA6-B996-B055FB78FB96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB-BackUp", "DB-BackUp", "{0370C86A-4F44-495B-904A-DE23719FC288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

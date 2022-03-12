@@ -12,8 +12,6 @@ namespace AhoyHotelApi
             CreateMap<Booking, AddBookingDto>();
             CreateMap<AddBookingDto, Booking>()
            .ForMember(d => d.UserId, opt => opt.MapFrom(r => r.UserId));
-;
-
 
             CreateMap<Hotel, HotelDetailsDto>().ReverseMap();
             CreateMap<Hotel, HotelDto>().ReverseMap();

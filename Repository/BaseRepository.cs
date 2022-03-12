@@ -1,15 +1,9 @@
 ﻿using Contracts;
-using Domain.Entities;
 using Entities;
 using Entities.DataTransferObjects.Commons;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using X.PagedList;
 
 
@@ -66,7 +60,7 @@ namespace Repository
             return await query.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IPagedList<T>> GetPagedList(RequestParams requestParams, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
+        public async Task<IPagedList<T>> GetPagedList(PaginationParameters paginationParameters, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = Dbset;
 
@@ -77,7 +71,7 @@ namespace Repository
             }
 
             return await query.AsNoTracking()
-                .ToPagedListAsync(requestParams.PageNumber, requestParams.PageSize);
+                .ToPagedListAsync(paginationParameters.PageNumber, paginationParameters.PageSize);
         }
 
         public async Task AddAsync(T entity)

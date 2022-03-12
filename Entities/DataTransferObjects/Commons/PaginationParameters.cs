@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities.DataTransferObjects.Commons
+﻿namespace Entities.DataTransferObjects.Commons
 {
-    public class RequestParams
+    public class PaginationParameters
     {
         const int maxPageSize = 50;
         public int PageNumber { get; set; } = 1;
