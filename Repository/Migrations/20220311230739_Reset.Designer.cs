@@ -4,6 +4,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220311230739_Reset")]
+    partial class Reset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +152,10 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FacilityId")
+                    b.Property<int>("FacilityId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("FacilityId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("HotelId")
@@ -164,7 +169,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacilityId");
+                    b.HasIndex("FacilityId1");
 
                     b.HasIndex("HotelId");
 
@@ -501,7 +506,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Domain.Entities.Facility", "Facility")
                         .WithMany()
-                        .HasForeignKey("FacilityId")
+                        .HasForeignKey("FacilityId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

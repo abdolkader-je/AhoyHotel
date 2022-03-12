@@ -11,6 +11,10 @@ namespace Configurations
         {
             CreateMap<Booking, AddBookingDto>();
             CreateMap<AddBookingDto, Booking>();
+
+
+            CreateMap<Hotel, HotelDTO>().ReverseMap();
+            CreateMap<Hotel, CreateHotelDTO>().ReverseMap();
         }
     }
 }

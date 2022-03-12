@@ -2,7 +2,7 @@
 using Contracts;
 using Domain.Entities;
 using Entities.DataTransferObjects;
-using InsurAggrigator.API.Contracts;
+using Entities.DataTransferObjects.Commons;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,29 +13,25 @@ namespace AhoyHotelApi.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<BookingController> _logger;
-        private readonly IMapper _mapper;
+        private readonly IMapper mapper;
 
-        public BookingController(IUnitOfWork unitOfWork, ILogger<BookingController> logger,
+        public BookingController(IUnitOfWork unitOfWork, 
             IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;
-            this._mapper = mapper;
+            this.mapper = mapper;
         }
 
         //[Authorize(Roles = "User")]
         [HttpPost]
-        [Route(ApiRoute.BookingRoute.AddBooking)]
+        [Route(ApiRoute.BookingRoutes.AddBooking)]
         public async Task<IActionResult> CreateBooking([FromBody] AddBookingDto BookingDTO)
         {
-
-
-            var Booking = _mapper.Map<AddBookingDto, Booking>(BookingDTO);
+            Booking Booking = mapper.Map<AddBookingDto, Booking>(BookingDTO);
             await _unitOfWork.Bookings.Insert(Booking);
             await _unitOfWork.Save();
-
-            return CreatedAtRoute("CreateBooking", new { id = Booking.Id }, Booking);
+            BaseResponse response= new() { ResponseMessage = "booking added successfully", StatusCode = 200 };
+            return Ok(response);
         }
 
     }

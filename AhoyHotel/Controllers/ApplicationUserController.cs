@@ -24,12 +24,12 @@ namespace AhoyHotelApi.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             var userExists = await _userManager.FindByNameAsync(registerDto.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { StatusCode = "Error", ResponseMessage = "User already exists!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { StatusCode = 400, ResponseMessage = "User already exists!" });
             ApplicationUser user = new()
             {
                 Email = registerDto.Email,
@@ -39,12 +39,12 @@ namespace AhoyHotelApi.Controllers
             };
             var result = await _userManager.CreateAsync(user, registerDto.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { StatusCode = "Error", ResponseMessage = "User creation failed! Please check user details and try again." });
-            return Ok(new ResponseDto { StatusCode = "Success", ResponseMessage = "User created successfully!" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { StatusCode = 400, ResponseMessage = "User creation failed! Please check user details and try again." });
+            return Ok(new ResponseDto { StatusCode = 200, ResponseMessage = "User created successfully!" });
         }
 
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _userManager.FindByNameAsync(loginDto.Username);

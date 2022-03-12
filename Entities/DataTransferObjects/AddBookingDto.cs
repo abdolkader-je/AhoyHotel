@@ -13,7 +13,7 @@ namespace Entities.DataTransferObjects
         public DateTime CheckOut { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string Price { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int RoomId { get; set; }
         public RoomType RoomType { get; set; }
 

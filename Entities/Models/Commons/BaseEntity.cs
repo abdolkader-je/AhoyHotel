@@ -7,6 +7,7 @@ namespace  Domain.Entities
     {
         public BaseEntity()
         {
+            //Id = Guid.NewGuid();
             IsDeleted = false;
             CreatedDate = DateTime.Now;
         }

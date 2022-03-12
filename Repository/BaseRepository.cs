@@ -25,8 +25,6 @@ namespace Repository
             Dbset = DatabaseContext.Set<T>();
         }
 
-
-
         public async Task Delete(int id)
         {
             var entity = await Dbset.FindAsync(id);

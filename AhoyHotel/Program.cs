@@ -8,6 +8,8 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using Contracts;
 using Repository;
+using AutoMapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
