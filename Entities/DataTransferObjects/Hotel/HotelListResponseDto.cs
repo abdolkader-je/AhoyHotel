@@ -9,6 +9,6 @@ namespace Entities.DataTransferObjects.Hotel
 {
     public class HotelListResponseDto : BaseResponse
     {
-        public IList<HotelDto>? Data { get; set; }
+        public IList<HotelDto> Data { get; set; }
     }
 }

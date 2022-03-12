@@ -14,9 +14,6 @@ namespace UnitsOfTest.Booking
     {
         private static IMapper _mapper;
         private readonly Mock<IUnitOfWork> MockContext;
-        private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly ClaimsPrincipal _claimsPrincipal;
-        public readonly string _userId;
 
         public BookingTest()
         {

@@ -11,10 +11,10 @@ namespace Entities.DataTransferObjects
         public string Address { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
-        public virtual List<HotelFacility>? HotelFacilities { get; set; }
-        public virtual List<HotelImage>? HotelImages { get; set; }
-        public virtual List<Room>? Rooms { get; set; }
-        public virtual List<Review>? Reviews { get; set; }
+        public virtual List<HotelFacility> HotelFacilities { get; set; }
+        public virtual List<HotelImage> HotelImages { get; set; }
+        public virtual List<Room> Rooms { get; set; }
+        public virtual List<Review> Reviews { get; set; }
 
         public int? NumberOfRooms { get; set; }
         public int? RatingScale { get; set; }

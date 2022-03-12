@@ -9,7 +9,6 @@ public class HotelsTest
 {
 
     private static IMapper _mapper;
-    private static Mock<IUnitOfWork> _hotelMock;
     public HotelsTest()
     {
         if (_mapper == null)
@@ -26,8 +25,8 @@ public class HotelsTest
     [Fact]
     public void AddHotel()
     {
-        HotelController hotelController = new HotelController(_hotelMock.Object, _mapper);
-        var result = hotelController.GetHotelDetailsById(1);
+        //HotelController hotelController = new HotelController(_IUnitOfWork.Object, _mapper);
+        //var result = hotelController.GetHotelDetailsById(1);
         //Assert.IsType<IActionResult<HotelDetailsResponseDto>>(result);
     }
    
